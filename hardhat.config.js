@@ -1,4 +1,5 @@
 require("@matterlabs/hardhat-zksync-solc");
+require('dotenv').config();
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
@@ -11,6 +12,7 @@ module.exports = {
       },
     },
   },
+  defaultNetwork:'sepolia',
   networks: {
     zksync_testnet: {
       url: "https://zksync2-testnet.zksync.dev",
@@ -24,6 +26,10 @@ module.exports = {
       chainId: 324,
       zksync: true,
     },
+    sepolia: {
+      url: `https://sepolia.infura.io/v3/${process.env.INFURA_API_KEY}`,
+      accounts:[`0x${process.env.PRIVATE_KEY}`,]
+    }
   },
   paths: {
     artifacts: "./artifacts-zk",
